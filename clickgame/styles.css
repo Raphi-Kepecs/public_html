@@ -10,7 +10,7 @@ body {
 }
 
 #store-container {
-    border: 5px solid white;
+    border: 5px solid rgb(255, 255, 255);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -18,15 +18,14 @@ body {
 }
 
 #widget-container {
-    border: 5px solid white;
+    border: 5px solid rgb(255, 255, 255);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
 }
 
 #super-gompei {
-    filter: hue-rotate(180deg) sepia(calc(var(--gompei-count) * 10%)) saturate(calc(clamp(0, var(--gompei-count), 10) * 40% + 100%));
-    transform: rotateX(180deg);
+    filter: sepia(calc(var(--gompei-count) * 10%)) saturate(calc(clamp(0, var(--gompei-count), 10) * 40% + 100%));
 }
 
 .store {
@@ -59,7 +58,7 @@ body {
 }
 
 .store[broke] {
-    filter: brightness(0.25);
+    filter: brightness(0.5);
 }
 
 .widget[harvesting] {
@@ -74,8 +73,8 @@ body {
 
 /* If the widget is a click widget */
 .widget:not([auto="true"]) {
-    background-color: limegreen;
-    border: 3px solid white;
+    background-color: green;
+    border: 3px solid black;
 }
 
 /* Widget with image */
