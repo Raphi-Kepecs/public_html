@@ -141,7 +141,7 @@ class AICookapp {
         })
         if (!response.ok) {
             const errordata = await response.json();
-            throw new Error(`API Error: ${errorDate.eror?.message || 'Unkown error'}`);
+            throw new Error(`API Error: ${errordata.error?.message || 'Unkown error'}`);
 
         }
 
@@ -150,8 +150,25 @@ class AICookapp {
     }
 
     displayRecipe(recipe) {
-        this.recipeContent.innerHTML = recipe;
+        let formattedRecipe = this.formatRecipe(recipe);
+        this.recipeContent.innerHTML = formattedRecipe;
         this.showRecipe();;
+    }
+
+    formatRecipe(recipe) {
+        recipe = recipe.replace(/(^| )+/gm, "$1")
+        recipe = recipe.replace(/^- */gm, "")
+        recipe = recipe.replace(/\*\*(.+?)\*\*/gm, "<strong>$1</strong>")
+        recipe = recipe.replace(/\*^(.+)\*/gm, "<h3 class=recipe-title>$1</h3>")   
+        recipe = recipe.replace(/^\*/gm, "•")
+        recipe = recipe.replace(/^(.+)/gm, "<p>$1</p>")
+
+
+
+
+
+
+        return recipe
     }
 
     showError(message) {
