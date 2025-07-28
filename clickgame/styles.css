@@ -9,6 +9,17 @@ body {
     color: white;
 }
 
+#SellButton {
+    width: 240px;
+    height: 70px;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 3px;
+    font-size: 250%;
+    background-color: gold;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 #store-container {
     border: 5px solid rgb(255, 255, 255);
     width: 100%;
@@ -58,12 +69,13 @@ body {
 }
 
 .store[broke] {
-    filter: brightness(0.5);
+    filter: brightness(0.25);
 }
 
 .widget[harvesting] {
-    filter: brightness(.5)
+    filter: brightness(1.0)
 }
+
 
 /* If the widget is an automatic widget */
 .widget[auto="true"] {
@@ -83,6 +95,8 @@ body {
     max-height: 100%;
 }
 
+
+
 .widget[harvesting] .overlay-slide {
     display: block;
     position: absolute;
@@ -97,6 +111,25 @@ body {
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
+
+.widget[selling] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+    cursor: pointer;
+    user-select: none;
+}
+
 
 .widget:not([harvesting]) .overlay-slide {
     display: none;

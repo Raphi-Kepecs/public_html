@@ -1,13 +1,15 @@
-const widget_container = document.getElementById("widget-container")
-const score_element = document.getElementById("score")
-const stores = document.getElementsByClassName("store-container")
-
+let widget_container = document.getElementById("widget-container")
+let score_element = document.getElementById("score")
+let stores = document.getElementsByClassName("store")
 let score = 5;
 let super_gompei_count = 0;
+let selling = false;
 
 function changescore(amount) {
     score += amount;
-    score_element.innerHTML = "Score: " + score;
+    score_element.innerHTML = "Cars: " + score;
+
+
 
     for (let store of stores) {
         let cost = parseInt(store.getAttribute("cost"))
@@ -22,23 +24,44 @@ function changescore(amount) {
     }
 }
 
+function changeselling() {
+    if (selling == true) {
+        const button = document.getElementById("SellButton");
+        button.textContent = "Sell drivers";
+        selling = false;
+
+        for (let widget of widget_container.children)
+            widget.removeAttribute("selling", "");
+    } else {
+        const button = document.getElementById("SellButton");
+        button.textContent = "Stop selling";
+        selling = true;
+        for (let widget of widget_container.children)
+            widget.setAttribute("selling", "");
+
+    }
+}
+
+
+
 function buy(store) {
     let cost = parseInt(store.getAttribute("cost"))
 
     if (cost > score) {
         return;
+
     }
 
     changescore(-cost)
 
-    let super_gompei = document.querySelector("#widget-container #super-gompei")?.parentElement;
+    /*let super_gompei = document.querySelector("#widget-container #super-gompei")?.parentElement;
     if (store.getAttribute("name") == "Super-Gompei" && super_gompei != null) {
         let old_yield = parseInt(super_gompei.getAttribute("reap"));
         super_gompei.setAttribute("reap", old_yield + 100);
         super_gompei_count += 1;
         document.body.style = "--gompei-count:" + super_gompei_count;
         return;
-    }
+    }*/
 
 
     let new_widget = store.firstElementChild.cloneNode(true)

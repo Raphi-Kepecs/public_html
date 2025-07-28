@@ -4,9 +4,16 @@
      Padding-bottom: 10px;
  }
 
- .DriverPic {
-     width: 50%;
+ .LeftDriverPic {
+     width: 45%;
      Float: left;
+     Padding-right: 20px;
+     Padding-bottom: 25px;
+ }
+
+ .RightDriverPic {
+     width: 30%;
+     Float: right;
      Padding-right: 20px;
      Padding-bottom: 25px;
  }
