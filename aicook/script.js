@@ -1,4 +1,4 @@
-class AICookap {
+class AICookapp {
     constructor() {
         this.apiKey = localStorage.getItem('geminiApiKey') || '';
         this.initializeElements();
@@ -43,7 +43,7 @@ class AICookap {
     }
 
     updateApiKeyStatus(isValid) {
-        constant = this.saveApiKeyBtn;
+        const btn = this.saveApiKeyBtn;
         if (isValid) {
             btn.textContent = 'save'
             btn.style.background = '#28a745';
@@ -67,14 +67,14 @@ class AICookap {
     }
 
     async generateRecipe() {
-        if (!this.apikey) {
+        if (!this.apiKey) {
             this.showError('Please save your Gemini Api Key');
             return;
 
         }
 
         const ingredients = this.ingredientsInput.value.trim();
-        if (!this.ingredients) {
+        if (!ingredients) {
             this.showError('Please enter some ingredients');
             return;
 
@@ -119,29 +119,71 @@ class AICookap {
 
     Make sure the recipe is practical and delicious!`;
 
+        const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${this.apiKey}`;
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: prompt
+                    }]
+                }],
+                generationConfig: {
+                    temperature: 0.7,
+                    top_k: 40,
+                    top_p: 0.95,
+                    maxOutputTokens: 2048
+                }
+            })
+        })
+        if (!response.ok) {
+            const errordata = await response.json();
+            throw new Error(`API Error: ${errorDate.eror?.message || 'Unkown error'}`);
 
+        }
+
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text;
     }
 
-    displayRecipe(recipe) { }
+    displayRecipe(recipe) {
+        this.recipeContent.innerHTML = recipe;
+        this.showRecipe();;
+    }
 
     showError(message) {
+        alert(message);
+    }
+
+
+    showRecipe(recipe) {
+        this.recipeSection.classList.add('show');
+        this.recipeSection.scrollIntoView({ behavior: 'smooth' });
 
     }
 
     hideRecipe() {
-
-    }
-
-    showRecipe(recipe) {
-
+        this.recipeSection.classList.remove('show');
     }
 
 
     showLoading(isLoading) {
+        if (isLoading) {
+            this.loading.classList.add('show');
+            this.generateBtn.disabled = true;
+            this.generateBtn.textContent = 'Generating...';
+        } else {
+            this.loading.classList.remove('show');
+            this.generateBtn.disabled = false;
+            this.generateBtn.textContent = 'Generate Recipe';
+        }
 
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new AICookap();
+    new AICookapp();
 });
