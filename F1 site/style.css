@@ -5,24 +5,71 @@
  }
 
  .LeftDriverPic {
-     width: 45%;
-     Float: left;
-     Padding-right: 20px;
-     Padding-bottom: 25px;
+     border-style: solid;
+     margin-top: 10px;
+     border-color: black;
+     border-radius: 30px;
+     border-width: 5px;
+     width: 48%;
+     margin-left: 10px;
+ }
+
+ .CarPic {
+     border-style: solid;
+     border-color: black;
+     border-radius: 30px;
+     border-width: 5px;
+     width: 48%;
+     margin-left: 10px;
+ }
+
+ .CarDesc {
+     max-width: 48%;
+     font-size: 200%;
+     margin-right: 10px;
  }
 
  .RightDriverPic {
-     width: 30%;
-     Float: right;
-     Padding-right: 20px;
-     Padding-bottom: 25px;
+     border-style: solid;
+     margin-top: 10px;
+     border-color: black;
+     border-radius: 30px;
+     border-width: 5px;
+     width: 48%;
+     margin-right: 10px;
  }
 
- .DriverDesc {
+ .TeamPic {
+     border-style: solid;
+     margin-top: 10px;
+     border-color: black;
+     border-radius: 30px;
+     border-width: 5px;
+     border-radius: 15px;
+     max-width: 98%;
+     display: block;
+     margin: 0 auto;
+ }
+
+ .TeamDesc {
+     max-width: 98%;
+     display: block;
+     margin: 0 auto;
      font-size: 200%;
-     Padding-left: 20px;
+ }
+
+ .LeftDriverDesc {
+     max-width: 48%;
+     font-size: 200%;
+     margin-left: 10px;
      text-align: justify;
-     padding-bottom: 300px;
+ }
+
+ .RightDriverDesc {
+     max-width: 48%;
+     font-size: 200%;
+     margin-right: 10px;
+     text-align: justify;
  }
 
  .teambuttons {
@@ -34,4 +81,9 @@
      vertical-align: middle;
      color: white;
      border-radius: 10px;
+ }
+
+ .flex {
+     display: flex;
+     justify-content: space-between;
  }
